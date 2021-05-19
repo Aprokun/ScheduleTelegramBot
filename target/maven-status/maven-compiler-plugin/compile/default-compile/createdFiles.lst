@@ -1,0 +1,7 @@
+schedulebot\parser\Lesson.class
+schedulebot\parser\Parser.class
+schedulebot\bot\Main.class
+schedulebot\parser\Timer.class
+schedulebot\bot\DAO\LessonDAO.class
+schedulebot\bot\ScheduleBot.class
+schedulebot\parser\Page.class
