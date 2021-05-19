@@ -1,20 +1,23 @@
 package schedulebot.parser;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.util.HashMap;
 
+@Component
 public class Parser {
+    private final Document schedule;
 
-    public HashMap<String, Lesson> parse(Page schedule) {
-        Document schedule_ = getDocument(schedule);
-        Elements cells = getCells(schedule_);
+    public Parser(Document schedule) {
+        this.schedule = schedule;
+    }
 
-        //cells.removeIf(cell -> !cell.hasText());
+    public HashMap<String, Lesson> parse() {
+        Elements cells = getCells(schedule);
         return getLessonsHashMap(cells);
     }
 
@@ -93,14 +96,5 @@ public class Parser {
         return schedule_.select(
                 "body > table:nth-child(4) > tbody > tr > td"
         );
-    }
-
-    private Document getDocument(Page page) {
-        try {
-            return Jsoup.connect(page.getUrl()).get();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new Document("");
-        }
     }
 }

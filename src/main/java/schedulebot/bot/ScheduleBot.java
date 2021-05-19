@@ -1,27 +1,36 @@
 package schedulebot.bot;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import schedulebot.bot.DAO.LessonDAO;
 import schedulebot.parser.Lesson;
-import schedulebot.parser.Parser;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class ScheduleBot extends TelegramLongPollingBot {
-    LessonDAO dao = new LessonDAO(new Parser());
+    private final LessonDAO lessonDAO;
+
+    private final String BOT_USERNAME = "BSTUScheduleBot";
+    private final String BOT_TOKEN = "1662346531:AAFTL9t2Zr_9QvBiXjiL2r4nJWUc4c_PGfI";
+
+    public ScheduleBot(LessonDAO lessonDAO) {
+        this.lessonDAO = lessonDAO;
+    }
 
     @Override
     public String getBotUsername() {
-        return "BSTUScheduleBot";
+        return BOT_USERNAME;
     }
 
     @Override
     public String getBotToken() {
-        return "1662346531:AAFTL9t2Zr_9QvBiXjiL2r4nJWUc4c_PGfI";
+        return BOT_TOKEN;
     }
 
     @Override
@@ -40,7 +49,7 @@ public class ScheduleBot extends TelegramLongPollingBot {
     }
 
     private List<String> getTodayLessons() {
-        List<Lesson> lessons = dao.getTodayLessonList();
+        List<Lesson> lessons = lessonDAO.getTodayLessonList();
         return toLessonStringList(lessons);
     }
 

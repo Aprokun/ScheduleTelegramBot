@@ -1,19 +1,23 @@
 package schedulebot.bot.DAO;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import schedulebot.parser.Lesson;
 import schedulebot.parser.Page;
 import schedulebot.parser.Parser;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.*;
 
+@Component
 public class LessonDAO {
     HashMap<String, Lesson> lessons;
+    final Parser parser;
 
+    @Autowired
     public LessonDAO(Parser parser) {
-        lessons = parser.parse(new Page("https://www.bstu.ru/static/themes/bstu/schedule/index.php?gid=10640&"));
+        this.parser = parser;
+        lessons = parser.parse();
     }
 
     public List<Lesson> getTodayLessonList() {

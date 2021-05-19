@@ -4,4 +4,5 @@ schedulebot\bot\Main.class
 schedulebot\parser\Timer.class
 schedulebot\bot\DAO\LessonDAO.class
 schedulebot\bot\ScheduleBot.class
+schedulebot\config\SpringBeansConfig.class
 schedulebot\parser\Page.class
