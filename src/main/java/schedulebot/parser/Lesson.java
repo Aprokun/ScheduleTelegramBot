@@ -25,24 +25,24 @@ public class Lesson {
     }
 
     private String getDay(byte numOfDay) {
-        return switch (numOfDay) {
-            case 1 -> "Monday";
-            case 2 -> "Tuesday";
-            case 3 -> "Wednesday";
-            case 4 -> "Thursday";
-            case 5 -> "Friday";
-            case 6 -> "Saturday";
-            default -> "undefined";
-        };
+        switch (numOfDay) {
+            case 1: return  "Monday";
+            case 2: return "Tuesday";
+            case 3: return "Wednesday";
+            case 4: return "Thursday";
+            case 5: return "Friday";
+            case 6: return "Saturday";
+            default: return "undefined";
+        }
     }
 
     private String getStatus(byte status) {
-        return switch (status) {
-            case 1 -> "Numerator";
-            case 0 -> "Usual";
-            case -1 -> "Denominator";
-            default -> "undefined";
-        };
+        switch (status) {
+            case 1: return "Numerator";
+            case 0: return "Usual";
+            case -1: return "Denominator";
+            default: return "undefined";
+        }
     }
 
     @Override

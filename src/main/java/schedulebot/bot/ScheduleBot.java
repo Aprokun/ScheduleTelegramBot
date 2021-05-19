@@ -47,7 +47,7 @@ public class ScheduleBot extends TelegramLongPollingBot {
     private List<String> toLessonStringList(List<Lesson> lessons) {
         List<String> res = new ArrayList<>();
 
-        for (var l : lessons) {
+        for (Lesson l : lessons) {
             res.add(l.toString());
         }
 
